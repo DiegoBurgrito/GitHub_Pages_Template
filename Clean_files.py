@@ -1,9 +1,8 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import LabelEncoder
 
-print("Running test script")
-print("Script started")
+print("🟢 Running test script")
+print("🚀 Script started")
 
 def clean_csv(file_name):
     print(f"Cleaning {file_name}...")
@@ -11,7 +10,7 @@ def clean_csv(file_name):
     try:
         df = pd.read_csv(file_name)
     except Exception as e:
-        print(f"Error loading file: {e}")
+        print(f"❌ Error loading file: {e}")
         return
 
     # Drop unneeded columns (keep 'Label' or 'Attempted Category' for categories)
@@ -47,24 +46,9 @@ def clean_csv(file_name):
     output_file = file_name.replace('.csv', '_cleaned.csv')
     try:
         df.to_csv(output_file, index=False)
-        print(f"Data cleaned and saved to '{output_file}'")
+        print(f"✅ Data cleaned and saved to '{output_file}'")
     except Exception as e:
-        print(f"Error saving file: {e}")
+        print(f"❌ Error saving file: {e}")
 
 clean_csv('thursday_plus.csv')
 
-
-#Tuesday
-dfTuesday = pd.read_csv("tuesday.csv", skipinitialspace=True)
-
-columns_to_delete = ['Src IP dec', 'Dst IP dec', 'Src Port', 'Dst Port', 'Timestamp', 'ICMP Code', 'ICMP Type', 'Fwd URG Flags', 'Bwd URG Flags', 'Fwd RST Flags', 'Bwd RST Flags', 'Fwd PSH Flags', 'Bwd PSH Flags', 'FWD Init Win Bytes', 'Bwd Init Win Bytes', 'Fwd Act Data Pkts', 'Fwd Seg Size Min','Attempted Category']
-#df_parts_to_remove = df[columns_to_delete]
-#df.columns = df.columns.str.strip()
-#print(df.columns)
-
-dfTuesday = dfTuesday.drop(columns = columns_to_delete)
-
-#0 = Bening and 1 = Attack, I want to figure out how to make it output multiple numbers for each attack
-encoder = LabelEncoder()
-
-dfTuesday['Label'] = encoder.fit_transform(dfTuesday['Label'])
