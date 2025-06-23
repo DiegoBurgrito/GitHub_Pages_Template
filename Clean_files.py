@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 
-print("🟢 Running test script")
-print("🚀 Script started")
+print("Running test script")
+print("Script started")
 
 def clean_csv(file_name):
     print(f"Cleaning {file_name}...")
@@ -10,7 +10,7 @@ def clean_csv(file_name):
     try:
         df = pd.read_csv(file_name)
     except Exception as e:
-        print(f"❌ Error loading file: {e}")
+        print(f"Error loading file: {e}")
         return
 
     # Drop unneeded columns (keep 'Label' or 'Attempted Category' for categories)
@@ -48,7 +48,7 @@ def clean_csv(file_name):
         df.to_csv(output_file, index=False)
         print(f"✅ Data cleaned and saved to '{output_file}'")
     except Exception as e:
-        print(f"❌ Error saving file: {e}")
+        print(f"Error saving file: {e}")
 
 clean_csv('thursday_plus.csv')
 
